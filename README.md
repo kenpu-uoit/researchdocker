@@ -1,2 +1,8 @@
-# researchdocker
-Docker image to support collaborative research
+# Research Docker
+
+- A docker environment
+- Supports multi-user login system
+- SSH
+- Jupyter Lab
+
+
