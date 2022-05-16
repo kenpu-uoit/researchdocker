@@ -15,7 +15,7 @@ RUN conda install mamba -n base -c conda-forge
 #
 RUN apt-get update 
 RUN DEBIAN_FRONTEND=noninteractive TZ=America/New_York apt-get install -y tzdata
-RUN apt-get install -yq \
+RUN apt-get update && apt-get install -yq \
     build-essential \
     openssh-server openssh-client \
     git \
@@ -23,6 +23,9 @@ RUN apt-get install -yq \
     tree \
     less \
     vim \
+    wget \
+    curl \
+    unzip \
     sudo
 
 
@@ -45,11 +48,11 @@ RUN npm install -g configurable-http-proxy
 #
 RUN pip install torch torchvision torchaudio
 RUN pip install transformers[torch]
+RUN mamba install -y tensorflow-gpu
 
 #
 # Data Science
 #
-RUN conda install mamba -n base -c conda-forge
 RUN mamba install --quiet --yes \
     'altair' \
     'beautifulsoup4' \
@@ -95,7 +98,6 @@ RUN wget -q https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/l
     && chmod a+x /bin/lein
 
 RUN cd /tmp \
-    && apt-get install -yq curl \
     && curl -O https://download.clojure.org/install/linux-install-1.11.1.1113.sh \
     && chmod +x ./linux-install-1.11.1.1113.sh \
     && ./linux-install-1.11.1.1113.sh
@@ -112,7 +114,6 @@ RUN mv ~/.local/share/jupyter/kernels/clojupyter /opt/miniconda3/share/jupyter/k
 #
 # Kotlin
 #
-RUN apt-get install -yq unzip
 RUN cd /tmp \
     && wget -q https://github.com/JetBrains/kotlin/releases/download/v1.6.21/kotlin-compiler-1.6.21.zip \
     && unzip kotlin-compiler-1.6.21.zip \
