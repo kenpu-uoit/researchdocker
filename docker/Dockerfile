@@ -128,5 +128,6 @@ COPY ./start.sh /bin
 COPY ./createuser.sh /bin
 COPY ./createusers.py /bin
 COPY ./users.default /etc/
+COPY ./jupyterhub_config.py /etc/
 
 CMD /bin/start.sh
