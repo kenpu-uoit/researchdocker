@@ -1,0 +1,18 @@
+name = project2023b
+all:
+	@echo "$(name)"
+
+start:
+	docker run --rm --name $(name) \
+		-p 8190:22 \
+		-p 8191:8000 \
+		--gpus "device=3" \
+		--cpus="8" \
+		--memory="16G" \
+		-v $(PWD)/data.$(name)/home:/home \
+		-v $(PWD)/data.$(name)/datasets:/datasets \
+		-v $(PWD)/data.$(name)/users.default:/etc/users.default \
+		kenpu/research-torch
+
+stop:
+	docker rm -f $(name)

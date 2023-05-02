@@ -1,0 +1,11 @@
+.PHONY: base torch
+
+base:
+	docker build -t kenpu/research-base ./docker/base
+
+torch:
+	docker build -t kenpu/research-torch ./docker/torch
+
+lang:
+	docker build -t kenpu/research-lang ./docker/lang
+
