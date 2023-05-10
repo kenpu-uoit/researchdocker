@@ -3,7 +3,7 @@ all:
 	@echo "$(name)"
 
 start:
-	docker run --rm --name $(name) \
+	docker run --rm -d --name $(name) \
 		-p 8190:22 \
 		-p 8191:8000 \
 		--gpus "device=3" \
